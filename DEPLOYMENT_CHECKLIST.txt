@@ -1,0 +1,17 @@
+RAN-NEETI DEPLOYMENT CHECKLIST
+
+[ ] Download and extract the ZIP
+[ ] Create GitHub repository and check "Add a README file"
+[ ] Upload app.py to repository root
+[ ] Upload requirements.txt to repository root
+[ ] Upload README.md to repository root
+[ ] Upload .gitignore to repository root
+[ ] Upload .streamlit/config.toml (keep the .streamlit folder)
+[ ] Commit changes
+[ ] Confirm app.py is visible on the GitHub repository main page
+[ ] Open Streamlit Community Cloud and sign in with GitHub
+[ ] Create app using the exact repository branch displayed by GitHub
+[ ] Set main file path to app.py
+[ ] Deploy and check app logs if an error appears
+
+Important: This package's sports modules use historical-data ML baselines. Fiction uses source-linked Wikipedia lookup, not a fully generative AI battle engine yet. Do not claim those unfinished features are already live.
