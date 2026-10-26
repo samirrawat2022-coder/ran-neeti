@@ -1,57 +1,38 @@
-# RAN-NEETI — Unified AI Prediction Lab
+# RAN-NEETI — AI Prediction Lab
 
-A cloud-deployable Streamlit research prototype for historical football and T20 cricket predictions, plus source-linked fictional-character lookup.
+A deployable Streamlit research prototype for multi-sport matchup exploration, tactical win routes/counters, and anime character metadata lookup.
 
-## Included files
+## What is included
+- Responsive dark dashboard with five workspaces.
+- Best-effort public ESPN scoreboard retrieval for selected leagues.
+- Exploratory Elo-style matchup estimate **only when** returned records contain completed head-to-head results for both named sides.
+- Sport-specific general major-moves playbooks with counters.
+- Jikan API character metadata search.
+- Evidence-input workspace for conditional fictional battle analysis.
+- Explicit data/model status and beginner deployment guide.
 
-- `app.py` — complete Streamlit application
-- `requirements.txt` — Python packages installed by Streamlit Cloud
-- `.streamlit/config.toml` — dark futuristic theme and cloud-safe settings
-- `.gitignore` — excludes secrets and local Python cache
-- `README.md` — deployment instructions
+## Important limitations
+This is **not** a validated production all-sports AI prediction engine. The ESPN public endpoints may not support every listed sport/league consistently. No sport-specific trained model, historical backtest, calibrated probability model, automated event-level tactics detector, or canonical anime battle reasoner is claimed as complete. Missing evidence results in no numeric prediction. Do not use the prototype for betting decisions.
 
-## Deploy online (no local Python installation)
+## Run locally (optional)
+```bash
+python -m venv .venv
+# Windows: .venv\\Scripts\\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-### A. Create a GitHub repository
+## Deploy without installing Python on your computer
+1. Extract this ZIP.
+2. Create a GitHub repository called `ran-neeti`.
+3. Upload `app.py`, `requirements.txt`, and `README.md` to the repository root.
+4. Open https://share.streamlit.io and sign in with GitHub.
+5. Create app → select the repository, branch `main`, and file `app.py`.
+6. Deploy and wait for the public URL.
 
-1. Sign in at https://github.com/ and choose **New repository**.
-2. Name it `ran-neeti`.
-3. Check **Add a README file** before clicking **Create repository**. This creates the first commit and branch (usually `main`).
+## Data sources
+- ESPN public scoreboard endpoints (best effort; availability varies): `https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/scoreboard`
+- Jikan API for public anime character metadata: `https://api.jikan.moe/v4/characters`
 
-### B. Upload every project file
-
-1. Open the repository's main **Code** page.
-2. Choose **Add file → Upload files** (or the `uploading an existing file` link if the repository is empty).
-3. Extract this ZIP on your computer.
-4. Upload the files *inside* the extracted folder to the repository root. Upload `app.py`, `requirements.txt`, `README.md`, `.gitignore`, and the `.streamlit` folder containing `config.toml`.
-5. Make sure `app.py` is visible on the repository's main page, not inside another `RAN_NEETI` folder.
-6. Click **Commit changes**.
-
-### C. Deploy on Streamlit Community Cloud
-
-1. Open https://share.streamlit.io/ and sign in with GitHub.
-2. Choose **Create app**.
-3. Select your repository and the exact branch shown in GitHub (usually `main`; use `master` if that is what your repository shows).
-4. Set **Main file path** to `app.py`.
-5. Click **Deploy** and wait for dependency installation and startup.
-
-## If the branch does not exist
-
-- First ensure the files were committed. An uncommitted upload does not create a branch.
-- On GitHub, open the repository and look at the branch dropdown above the file list.
-- Select the exact branch name shown there in Streamlit. Do not type `main` if GitHub shows a different name.
-- If the repository is empty, create a README or upload files and commit them first.
-
-## Current capabilities and honest limitations
-
-- **Football:** fetches historical English Premier League results from Football-Data.co.uk, builds pre-match rolling-form features, trains a Logistic Regression baseline and calculates a chronological holdout evaluation at runtime.
-- **Cricket:** fetches historical T20 results from Cricsheet, builds rolling team-form features, trains a Logistic Regression baseline and calculates evaluation metrics at runtime.
-- **Anime/fiction:** searches Wikipedia and displays source-linked summaries. This version does **not** include a fully generative LLM battle-judging engine and does not claim fictional win probabilities are scientifically calibrated.
-- **No API key is required** for the included functions. A generative AI provider integration must be implemented separately before adding an API key; adding a key alone cannot activate code that is not present.
-
-## Research integrity
-
-- Metrics are computed at runtime and are not hard-coded.
-- Save dated dataset snapshots and retrieval dates for reproducible thesis experiments because public datasets can change.
-- The temporal holdout is a baseline research prototype and should be critically reviewed before thesis reporting.
-- Predictions are not betting advice. The app does not fetch live odds, live scores, or injury updates.
+Check each source's terms, rate limits and permitted use before public or commercial deployment.
